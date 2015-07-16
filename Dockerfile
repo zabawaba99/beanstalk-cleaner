@@ -5,4 +5,4 @@ ADD . cleaner/
 WORKDIR cleaner
 RUN bundle install
 
-CMD bundle exec cleaner.rb
+CMD bundle exec ruby cleaner.rb
