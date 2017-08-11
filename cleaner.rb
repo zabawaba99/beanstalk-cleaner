@@ -22,7 +22,7 @@ resp.applications.each do |app|
 
     unless env.environments.any?
       ap "There are no apps with version #{version}"
-      client.delete_application_version({
+      beanstalk.delete_application_version({
         application_name: app.application_name,
         version_label: version,
         delete_source_bundle: true,
