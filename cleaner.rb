@@ -44,6 +44,6 @@ resp.applications.each do |app|
     end
 
     # Sleep to prevent ratelimit
-    sleep 0.5
+    sleep 1
   end
 end
