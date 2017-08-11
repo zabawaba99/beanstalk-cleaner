@@ -18,6 +18,11 @@ AWS_SECRET_ACCESS_KEY=mySecret
 AWS_DEFAULT_REGION=us-east-1
 ```
 
+You can set the age of applications that you want to keep in case of a rollback with:
+```
+AGE_DAYS=7
+```
+
 ### Running
 
 You can run this application two ways. You can clone the repository and run 
