@@ -28,7 +28,7 @@ AGE_DAYS=7
 You can run this application two ways. You can clone the repository and run 
 
 ```bash
-bundle exec cleaner.rb
+bundle exec ruby cleaner.rb
 ```
 
 Or you can run it using docker by running
