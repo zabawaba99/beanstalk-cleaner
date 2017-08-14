@@ -18,17 +18,16 @@ client = Aws::ElasticBeanstalk::Client.new
 
 resp = client.describe_applications
 resp.applications.each do |app|
-  app.versions.each do |version|
-    version_info = client.describe_application_versions({
+    versions_result = client.describe_application_versions({
       application_name: app.application_name,
-      version_labels: [version]
+      version_labels: app.versions
     })
 
-    created_date = version_info.application_versions.first.date_created
-    if created_date < clean_time
+  versions_result.application_versions.each do |version|
+    if version.date_created < clean_time
       env = client.describe_environments({
         application_name: app.application_name,
-        version_label: version
+        version_label: version.version_label
       })
 
       unless env.environments.any?
@@ -40,7 +39,7 @@ resp.applications.each do |app|
         })
       end
     else
-      ap "The app (#{app.application_name}) version (#{version}) is not old enough to delete (#{created_date} > #{clean_time})"
+      ap "The app (#{app.application_name}) version (#{version.version_label}) is not old enough to delete (#{version.date_created} > #{clean_time})"
     end
 
     # Sleep to prevent ratelimit
